@@ -15,6 +15,15 @@ public class RatingController {
 
     @GetMapping("/movies/{movieId}")
     public Rating getRatingsByMovieId(@PathVariable("movieId") String movieId){
-        return new Rating(movieId , 4);
+        return new Rating(movieId , 500);
     }
+
+    @RequestMapping("/user/{userId}")
+    public UserRating getUserRatings(@PathVariable("userId") String userId) {
+        UserRating userRating = new UserRating();
+        userRating.initData(userId);
+        return userRating;
+
+    }
+
 }

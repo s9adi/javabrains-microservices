@@ -2,6 +2,7 @@ package io.javabrains.movieCatalogueService.resources;
 
 import io.javabrains.movieCatalogueService.model.CatalogueItem;
 import io.javabrains.movieCatalogueService.model.Rating;
+import io.javabrains.movieCatalogueService.model.UserRating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,16 +16,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/catalogue")
 public class MovieCatalogueResource {
-
+    @Autowired
     private RestTemplate restTemplate;
 
     @Autowired
     private WebClient.Builder builder;
 
     @RequestMapping("{userId}")
-    public List<CatalogueItem> getCatalogue(@PathVariable("userId") String userId){
+    public List<CatalogueItem> getCatalogue(@PathVariable("userId") String userId) {
 
-        List<Rating> ratings = restTemplate.getForObject("http://localhost:9001/")
+        UserRating userRating = restTemplate.getForObject("https://ratings-service/" , UserRating.class);
 
     }
 }
